@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BusBuggy: {{user.username}} profile</title>
+</head>
+<body>
+    {% for pro in username %}
+      <img src="{{ pro.image.url }}" alt="">
+      {{pro.first_name}}
+      {{pro.last_name}}
+      {{pro.location}}
+      {{pro.phone_number}}
+    {% endfor %}
+</body>
+</html>

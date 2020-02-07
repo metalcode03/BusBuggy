@@ -1,0 +1,342 @@
+{% extends "base_folder/base.html" %}
+{% load static %}
+
+{% block blockbody %}
+<!-- START nav -->
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+  <div class="container">
+    <img src="{% static 'images/logo-1.png' %}" style="width: 60px;" alt="">
+    <a class="navbar-brand" href="/home">BusBuggy</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="oi oi-menu"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="ftco-nav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active"><a href="/home" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="/aboutus" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="/events/information" class="nav-link">Booked</a></li>
+        <li class="nav-item"><a href="{% url 'core:searchpath' %}" class="nav-link">Search</a></li>
+        {% if user.is_authenticated %}
+        <li class="nav-item"><a href="/profile/{{user}}" class="nav-link">Profile</a></li>
+        {% endif %}
+        <li class="nav-item"><a href="" class="nav-link"></a></li>
+      </ul>
+      {% if user.is_authenticated %}
+      <a href="/accounts/logout">LOGOUT</a>
+      {% else %}
+      <span><a href="/accounts/login" class="btn btn-lg rounded-pill btn-primary">LOGIN</a></span>
+      {% endif %}
+
+    </div>
+
+  </div>
+</nav>
+<!-- END nav -->
+
+
+
+  <div class="hero-wrap ftco-degree-bg" style="background-image: url({% static 'images/background.jpg' %});"
+    data-stellar-background-ratio="0.5">
+
+    <div class="overlay">
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-warning alert-dismissible fade show fadeIn" style="margin-top: 5.6%; z-index:1;" role="alert">
+        <strong></strong> {{ message }}.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     {% endfor %} 
+    {% endif %}
+    </div>
+
+    <div class="container">
+      <div class="row no-gutters slider-text justify-content-center align-items-center">
+
+        <div class="col-lg-8 col-md-6 ftco-animate d-flex align-items-end">
+          <div class="text text-center">
+            <h1 class="mb-4 "><b class="active" id="happy-text" >ORDERING</b> a bus<br> just got a lot <b
+                class="" style="color:#fbec1aad;">BETTER!!!</b></h1>
+            <p style="font-size: 18px;">Order a bus now and exprience the comfort we have to offer, we also give free booking on programs and events.</p>
+	            <!-- <form action="#" class="search-location mt-md-5"> -->
+              <div class="row justify-content-center">
+                <div class="col-lg-10 align-items-end">
+                      <button class="btn-lg rounded-pill btn-danger"
+                          style="background:#fbec1a; border:none; outline:none;"><a style="color:white;"
+                          href="{% url 'hire:hirebus' %}">Book Now</a></button>
+                  <div class="form-group">
+                    <div class="form-field">
+                      <!-- <input type="text" class="form-control" placeholder="Search location"> -->
+                      <!-- <button><span class="ion-ios-search"></span></button> -->
+                    </div>
+			              </div>
+                </div>
+              </div>
+		        	<!-- </form> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="mouse">
+				<a href="#" class="mouse-icon">
+					<div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
+				</a>
+			</div>
+  </div>
+        <!-- start events container -->
+    <section class="ftco-section goto-here">
+    	<div class="container">
+    		<div class="row justify-content-center">
+          <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+          	<span class="subheading">Offers!! </span>
+            <h2 class="mb-2">Special Offers For You</h2>
+          </div>
+        </div>
+        <div class="row">
+          {% if user.is_authenticated %}
+          {% for book in book_b %}
+          <!-- START event tab -->
+        
+          <div class="col-md-4">
+            <div class="property-wrap ftco-animate">
+              <a href="#" class="img" style="background-image: url({% static 'images/img_1.png' %});"></a>
+              <div class="text">
+                <a href=" {{ book.get_absolute_url }} ">
+                <p class="price"><span class="old-price"></span><span class="orig-price"> {{ book.price }} <small></small></span></p>
+                <ul class="property_list">
+                  <li><span class="flaticon-floor-plan"></span>{{book.number_of_bus}}</li>
+                </ul>
+                <h3><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h3>
+                <span class="location">{{ book.destination }}</span>
+                </a>
+                <a href="{{ book.get_add_to_bookings_url }}" class="d-flex align-items-center justify-content-center btn-sm bg-primary">
+                  <!-- <span class="ion-ios-link"></span> -->
+                  <span style="color: white;">Book Now</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- END event tab -->
+        
+          {% endfor %}
+        
+          {% else %}
+          <div class="col-sm-4">
+            <div class="card coder" style="border: 1px solid #fbec1a;">
+              <div class="title"id='titlepage'>
+                <i class="fa flaticon-paper"></i>
+                <h2>Hail a Bus</h2>
+              </div>
+
+              <div class="option">
+                <ul>
+                  <li> <i class="fa fa-check" aria-hidden="true"></i> Go To Bus Hailing Site</li>
+                  <li> <i class="fa fa-check" aria-hidden="true"></i> Search For Location</li>
+                  <li> <i class="fa fa-times" aria-hidden="true"></i> Click Book Now</li>
+                  <li> <i class="fa fa-times" aria-hidden="true"></i> Hailed Success!!!</li>
+                </ul>
+              </div>
+              <a href="#">Get Started</a>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="card coder2" style="border: 1px solid #fbec1a;">
+              <div class="title">
+                <i class="fa flaticon-plane"></i>
+                <h2>Order a Bus</h2>
+              </div>
+
+              <div class="option">
+                <ul>
+                  <li> <i class="fa fa-check" aria-hidden="true"></i> Click Bus Order Site</li>
+                  <li> <i class="fa fa-check" aria-hidden="true"></i> Fill In Your Data </li>
+                  <li> <i class="fa fa-times" aria-hidden="true"></i> Click Submit</li>
+                  <li> <i class="fa fa-times" aria-hidden="true"></i> Ordered Success!!! </li>
+                </ul>
+              </div>
+              <a href="#">Get Started</a>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="card coder3" style="border: 1px solid #fbec1a;">
+              <div class="title">
+                <i class="fa fa-paper-plane"></i>
+                <h2>Bus Travel</h2>
+              </div>
+
+              <div class="option">
+                <ul>
+                  <li> <i class="fa fa-check" aria-hidden="true"></i> Go To Travel Site</li>
+                  <li> <i class="fa fa-check" aria-hidden="true"></i> Search a Destination</li>
+                  <li> <i class="fa fa-times" aria-hidden="true"></i> Click & Get Ticket</li>
+                  <li> <i class="fa fa-times" aria-hidden="true"></i> Travel Success!!! </li>
+                </ul>
+              </div>
+              <a href="#">Get Started</a>
+            </div>
+          </div>
+          {% endif %}
+        
+        
+        </div>
+    	</div>
+    </section>
+    <!-- end events container -->
+        <!-- START countdown -->
+        <section class="ftco-counter img" id="section-counter">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                <div class="block-18 py-4 mb-4">
+                  <div class="text text-border d-flex align-items-center">
+                    <strong class="number" data-number="62">0</strong>
+                    <span>Total <br>Buses</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                <div class="block-18 py-4 mb-4">
+                  <div class="text text-border d-flex align-items-center">
+                    <strong class="number" data-number="1090">0</strong>
+                    <span>Total <br>Branches</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                <div class="block-18 py-4 mb-4">
+                  <div class="text text-border d-flex align-items-center">
+                    <strong class="number" data-number="1209">0</strong>
+                    <span>Available <br> Skilled Drivers</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                <div class="block-18 py-4 mb-4">
+                  <div class="text d-flex align-items-center">
+                    <strong class="number" data-number="100000">0</strong>
+                    <span>Registered <br>Users</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- END countdowwn -->
+
+    <!-- START workflow -->
+    <section class="ftco-section ftco-degree-bg services-section img mx-md-5" style="background-image: url({% static 'images/Bus_interior2.jpg' %});">
+    	<div class="overlay"></div>
+    	<div class="container">
+    		<div class="row justify-content-start mb-5">
+          <div class="col-md-6 text-center heading-section heading-section-white ftco-animate">
+          	<span class="subheading">Work flow</span>
+            <h2 class="mb-3">How it works</h2>
+          </div>
+        </div>
+    		<div class="row">
+    			<div class="col-md-6">
+    				<div class="row">
+		    			<div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
+		            <div class="media block-6 services services-2">
+		              <div class="media-body py-md-4 text-center">
+		              	<div class="icon mb-3 d-flex align-items-center justify-content-center"><span>01</span></div>
+		                <h3>Go To Ordering</h3>
+		                <p>Click the button that says order Now to Order for a bus.</p>
+		              </div>
+		            </div>      
+		          </div>
+		          <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
+		            <div class="media block-6 services services-2">
+		              <div class="media-body py-md-4 text-center">
+		              	<div class="icon mb-3 d-flex align-items-center justify-content-center"><span>02</span></div>
+		                <h3>Fill in information</h3>
+		                <p>You will need to fill in some specific information, busbuggy will help you handle the Ordering.</p>
+		              </div>
+		            </div>      
+		          </div>
+		          <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
+		            <div class="media block-6 services services-2">
+		              <div class="media-body py-md-4 text-center">
+		              	<div class="icon mb-3 d-flex align-items-center justify-content-center"><span>03</span></div>
+		                <h3>Click Submit</h3>
+		                <p>If you've filled in the right informations, you can now click the submit button.</p>
+		              </div>
+		            </div>      
+		          </div>
+		          <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
+		            <div class="media block-6 services services-2">
+		              <div class="media-body py-md-4 text-center">
+		              	<div class="icon mb-3 d-flex align-items-center justify-content-center"><span>04</span></div>
+		                <h3>Order Success!!!</h3>
+		                <p>You have Successfully made Your Order for Wedding Events, Church Events and so on.</p>
+		              </div>
+		            </div>      
+		          </div>
+		        </div>
+		      </div>
+    		</div>
+    	</div>
+    </section>
+    <!-- END  workflow -->
+    <!-- START service -->
+    <section class="ftco-section ftco-no-pb">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+            <span class="subheading">Our Services</span>
+            <h2 class="mb-2">Get the best we can offer in our system of transit</h2>
+          </div>
+        </div>
+        <div class="row d-flex">
+          <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services d-block text-center">
+              <div class="icon d-flex justify-content-center align-items-center"><span class="flaticon-piggy-bank"></span>
+              </div>
+              <div class="media-body py-md-4">
+                <h3>Save Money</h3>
+                <p>Spend Less on transportation, be able to save more money.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services d-block text-center">
+              <div class="icon d-flex justify-content-center align-items-center"><span class="flaticon-wallet"></span></div>
+              <div class="media-body py-md-4">
+                <h3>Extremely Affordable</h3>
+                <p>We totally give out Affordable price range that you can handle.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services d-block text-center">
+              <div class="icon d-flex justify-content-center align-items-center"><span class="flaticon-file"></span></div>
+              <div class="media-body py-md-4">
+                <h3>Easy To Use</h3>
+                <p>We use an easy to read high tech mapping system and A.I to help you handle mapping and security.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services d-block text-center">
+              <div class="icon d-flex justify-content-center align-items-center"><span class="flaticon-locked"></span></div>
+              <div class="media-body py-md-4">
+                <h3>Locked Security</h3>
+                <p>Top security system keeping you secured and your payment secure.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END service -->
+
+    {% endblock blockbody %}
+
+  
+
+
+  

@@ -1,0 +1,117 @@
+{% extends "base_folder/base.html" %}
+{% load static %}
+{% block blockbody %}
+
+  <!-- START nav -->
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="/home">BusBuggy</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="oi oi-menu"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active"><a href="/home" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="/events/information" class="nav-link">Events</a></li>
+            {% if user.is_authenticated %}
+            <li class="nav-item"><a href="/profile/{{user}}" class="nav-link">Profile</a></li>
+            {% endif %}
+            <li class="nav-item"><a href="" class="nav-link"></a></li>
+          </ul>
+          {% if user.is_authenticated %}
+          <a href="">LOGOUT</a>
+          {% else %}
+          <span><a href="/accounts/login" class="btn btn-sm btn-primary">LOGIN</a></span>
+          {% endif %}
+
+        </div>
+
+      </div>
+    </nav>
+    <!-- END nav -->
+    <div class="hero-wrap ftco-degree-bg" style="background:url({% static 'images/level2.jpg' %}) ;"  data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text justify-content-center align-items-center">
+          <div class="col-lg-8 col-md-6 ftco-animate d-flex align-items-end">
+          	<div class="text text-center">
+              
+              {% if count < 1 %}
+                <h1 class="mb-4">The Simplest <br>Way to Find Your Location</h1>
+              {% else %}
+                <h1 class="mb-4">{{ count }} results for <b>{{ query }}</b></h1>              
+              {% endif %}
+
+	            <p style="font-size: 18px;">We create a search request by their place and supplies it 
+                with the necessary destination. It is a paradisematic country, in which roasted parts</p>
+              <form action=" {% url 'core:searchpath' %} " 
+              method="GET" class="search-location mt-md-5">
+		        		<div class="row justify-content-center">
+		        			<div class="col-lg-10 align-items-end">
+		        				<div class="form-group">
+		          				<div class="form-field">
+				                <input type="text" name="q" class="form-control" id="id_q" placeholder="Search location">
+				                <button><span class="ion-ios-search"></span></button>
+				              </div>
+			              </div>
+		        			</div>
+		        		</div>
+		        	</form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  
+    
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row">
+{% for object in object_list %}
+            <!-- START event tab -->
+            
+            <div class="col-md-4">
+              <div class="property-wrap ftco-animate">
+                <!-- <a href="#" class="img" style="background-image: url({% static 'images/work-1.jpg' %});"></a> -->
+                <div class="text">
+                  <p class="price"><span class="old-price"></span><span
+                      class="orig-price">N{{ object.price }}<small></small></span></p>
+                  <ul class="property_list">
+                    <li><span class="flaticon-floor-plan"></span>{{ object.title }}</li>
+                  </ul>
+                  <h3><a href="#">{{ object.your_location }}</a></h3>
+                  <span class="location">{{ object.destination }}</span>
+                  <a href="/booking/{{object.slug}}" class="d-flex align-items-center justify-content-center btn-sm bg-primary">
+                    <!-- <span class="ion-ios-link"></span> -->
+                    <span style="color: white;">Book Now</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- END event tab -->
+{% endfor %}
+            </div>
+                <div class="row mt-5">
+                  <div class="col text-center">
+                    <div class="block-27">
+                      <ul>
+                        <li><a href="#">&lt;</a></li>
+                        <li class="active"><span>1</span></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&gt;</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                </section>
+
+{% endblock blockbody %}

@@ -1,0 +1,18 @@
+Username:
+{{username}}
+Email:
+{{email}}
+
+
+You have successfully Registered your account.
+
+
+Hey! {{username}},
+    Did you know you can book a bus
+for events and programs eg. EXPRIENCE, RCCG CONVENTION AND LOT MORE!!
+and it's absolutely FREE!!!
+
+
+ You can make up to 300,000 NAIRA monthly,
+all you need is to update your profile
+ page and you can start from here.

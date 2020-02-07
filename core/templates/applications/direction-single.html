@@ -1,0 +1,127 @@
+{% extends "base_folder/base.html" %}
+{% load static %}
+{% block blockbody %}
+<!-- START nav -->
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	<div class="container">
+		<a class="navbar-brand" href="/home">BusBuggy</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+			aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="oi oi-menu"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="ftco-nav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active"><a href="/home" class="nav-link">Home</a></li>
+				<li class="nav-item"><a href="/aboutus" class="nav-link">About</a></li>
+				<li class="nav-item"><a href="/events/information" class="nav-link">Booked</a></li>
+				{% if user.is_authenticated %}
+				<li class="nav-item"><a href="/profile/{{user}}" class="nav-link">Profile</a></li>
+				{% endif %}
+				<li class="nav-item"><a href="" class="nav-link"></a></li>
+			</ul>
+			{% if user.is_authenticated %}
+			<a href="/accounts/logout">LOGOUT</a>
+			{% else %}
+			<span><a href="/accounts/login" class="btn btn-sm btn-primary">LOGIN</a></span>
+			{% endif %}
+
+		</div>
+
+	</div>
+</nav>
+<!-- END nav -->
+
+<section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight" style="background-image: url('images/bg_1.jpg');"
+	data-stellar-background-ratio="0.5">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+			<div class="col-md-9 ftco-animate pb-5 text-center">
+				<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
+								class="ion-ios-arrow-forward"></i></a></span> <span>Properties <i
+							class="ion-ios-arrow-forward"></i></span></p>
+				<h1 class="mb-3 bread">Book</h1>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="ftco-section ftco-property-details">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-12">
+				<div class="property-details">
+					<div class="img" style="background-image: url(images/work-1.jpg);"></div>
+					<div class="text text-center">
+						<span class="subheading">{{ object.destination}}</span>
+						<h2>{{ object.destination }} to {{ object.particular_locations }}</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 pills">
+				<div class="bd-example bd-example-tabs">
+					<div class="d-flex justify-content-center">
+						<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+							<li class="nav-item">
+								<a class="nav-link active" id="pills-description-tab" data-toggle="pill"
+									href="#pills-description" role="tab" aria-controls="pills-description"
+									aria-expanded="true">Description</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="pills-manufacturer-tab" data-toggle="pill"
+									href="#pills-manufacturer" role="tab" aria-controls="pills-manufacturer"
+									aria-expanded="true">More Location</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="tab-content" id="pills-tabContent">
+						<div class="tab-pane fade show active" id="pills-description" role="tabpanel"
+							aria-labelledby="pills-description-tab">
+							<div class="row">
+								<div class="col-md-4">
+									<ul class="features">
+										<li class="check"><span class="ion-ios-checkmark"></span>Sit Count: {{ object.number_of_sitters }}
+										</li>
+										<li class="check"><span class="ion-ios-checkmark"></span> Buses needed : {{ object.how_many_bus_are_needed }} </li>
+										<li class="check"><span class="ion-ios-checkmark"></span>Price: 10,000</li>
+									</ul>
+								</div>
+								<div class="col-md-4">
+									<ul class="features">
+										<li class="check"><span class="ion-ios-checkmark"></span>Specified Date:  {{ object.date_and_time }}
+										</li>
+										<li class="check"><span class="ion-ios-checkmark"></span>Usage: 24hrs</li>
+										<li class="check"><span class="ion-ios-checkmark"></span>Terms: Approved</li>
+									</ul>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="tab-pane fade" id="pills-manufacturer" role="tabpanel"
+							aria-labelledby="pills-manufacturer-tab">
+							<p>
+								We alway's give you the comfort that you need in order to move from a particular point of your life to your
+								 destination an make it easy for you to make cash flow and be rich and become very successful so that 
+								  can take all you have for nothing.
+							</p>
+							<p>
+								that you dont want to give them and they can become better and better in their
+								daily life to make this money faster than bill gate and be rich till you tired of money. this is my year of
+								greatness if
+								you dont know well now you know that this is my year of break through and nobody can stop me from moving
+								forward.
+							</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endblock blockbody %}

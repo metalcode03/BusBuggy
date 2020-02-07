@@ -1,0 +1,38 @@
+.card {
+    position: relative;
+    max-width: 300px;
+    height: auto;
+
+    border-radius: 15px;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding: 40px 20px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.183);
+    transition: .5s all ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transition: .5s all ease-in-out;
+    background: linear-gradient(-45deg, #feb008, #fae128);
+    transform: scale(1.1);
+    z-index: 1;
+    color: white;
+}
+
+.title h2 {
+    color: white;
+}
+/* :hover{
+    color: white;
+} */
+
+@media all and (max-width: 920px){
+    #happy-text{
+        font-size: 50px;
+    }
+}
+
+
+
+

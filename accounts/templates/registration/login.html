@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GWorld-login</title>
+</head>
+
+<body>
+    <h1>Log In to GWorld</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {% for form in forms %}
+
+        {{form}}</br>
+
+        {% endfor %}
+        <input type="submit" value="Submit">
+        <!--     
+        <input type="text" name="username" id="username" placeholder="username"><br/>
+        <input type="email" name="email" id="email" placeholder="email"><br/>
+        <input type="password" name="password" id="password" placeholder="password"><br/>
+        <input type="password" name="confirm_password" id="confirm_password" placeholder="confirm password"><br/> -->
+
+    </form>
+</body>
+
+</html>

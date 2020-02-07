@@ -1,0 +1,199 @@
+{% extends 'hiring/base.html' %}
+{% load static %}
+
+{% block blockbody %}
+<header>
+	<h1>BusBuggy</h1>
+	<div class="ic">
+		<i  class="fa fa-arrow-right" style="color: #fff;"></i>
+	</div>
+</header>
+
+	<div id="booking" class="section">
+		<div class="section-center">
+			<div class="container">
+				<form action="" method="post">
+					{% csrf_token %}
+				<div class="col-md-7 col-md-push-5" id="first_text">
+					<div class="booking-cta">
+						<h1 class="titles">Make your reservation</h1>
+						<p>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4 col-md-pull-7" id="first_page">
+					<div class="booking-form">
+					
+						<!-- <div class="form-group">
+							<span class="form-label">Your Destination</span>
+							<input class="form-control" type="text" placeholder="Enter a destination or hotel name">
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<span class="form-label">Check In</span>
+									<input class="form-control" type="date" required>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<span class="form-label">Check out</span>
+									<input class="form-control" type="date" required>
+								</div>
+							</div>
+						</div> -->
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group">
+									<span class="form-label">Rooms</span>
+									<select class="form-control" name="destination" required id="id_destination">
+										{% for locate in hirebus_data %}
+										  	<option value=" {{locate.id}} ">{{ locate.address }}</option>
+										{% endfor %}
+
+										<!-- <option>2</option>
+										<option>3</option> -->
+									</select>
+									<span class="select-arrow"></span>
+								</div>
+							</div>
+							<div class="col-sm-12">
+								<div class="form-group">
+									<span class="form-label">Adults</span>
+									<select class="form-control" name="particular_locations" required id="id_particular_locations">
+										
+										{% for particular in hirebus_data %}
+											<option value=" {{particular.id}} ">{{ particular.address }}</option>
+										{% endfor %}
+											
+
+										<!-- <option>2</option>
+										<option>3</option> -->
+									</select>
+									<span class="select-arrow"></span>
+								</div>
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="form-group">
+											<span class="form-label">Check In</span>
+											<input class="form-control" name="date_and_time" id="id_date_and_time" type="date" required>
+										</div>
+									</div>
+
+								</div>
+							</div>
+
+
+					
+						<div class="form-btn">
+							<a class="submit-btn"   id="first_btn">Continue</a>
+						</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-7 col-md-push-5" id="second_text">
+					<div class="booking-cta">
+						<h1>Get The Best from Us</h1>
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi facere, soluta magnam consectetur
+							molestias itaque
+							ad sint fugit architecto incidunt iste culpa perspiciatis possimus voluptates aliquid consequuntur
+							cumque quasi.
+							Perspiciatis.
+						</p>
+					</div>
+				</div>
+					<div class="col-md-4 col-md-pull-7" id="second_page" >
+						<div class="booking-form">
+
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="form-group">
+											<span class="form-label">Rooms</span>
+											<select class="form-control" name="event_type" id="id_event_type">
+												{% for events in hiring_info %}
+													<option value=" {{ events.id }} ">{{ events.name }}</option>												  
+												{% endfor %}
+
+												<!-- <option>2</option>
+												<option>3</option> -->
+											</select>
+											<span class="select-arrow"></span>
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<div class="form-group">
+											<span class="form-label">Adults</span>
+											<select class="form-control" name="how_many_bus_are_needed" id="id_how_many_bus_are_needed">
+												<option value="1">22</option>
+
+												<option value="2">34</option>
+
+												<option value="3">56</option>
+
+												<option value="4">10</option>
+
+												<option value="5">22</option>
+
+												<option value="6">9</option>
+
+												<option value="7">8</option>
+
+												<option value="8">5</option>
+
+												<option value="9">4</option>
+
+												<option value="10">3</option>
+
+												<option value="11">2</option>
+
+												<option value="12">1</option>
+											</select>
+											<span class="select-arrow"></span>
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<div class="form-group">
+											<span class="form-label">Children</span>
+											<select class="form-control" name="number_of_sitters" id="id_number_of_sitters">
+												<option value="1">22</option>
+
+												<option value="2">34</option>
+
+												<option value="3">56</option>
+
+												<option value="4">10</option>
+
+												<option value="5">22</option>
+
+												<option value="6">9</option>
+
+												<option value="7">8</option>
+
+												<option value="8">5</option>
+
+												<option value="9">4</option>
+
+												<option value="10">3</option>
+
+												<option value="11">2</option>
+
+												<option value="12">1</option>
+											</select>
+											<span class="select-arrow"></span>
+										</div>
+									</div>
+								</div>
+								<div class="form-btn">
+									<a class="submit-btn" style=" background-color: aqua;">back</a>
+									<button type="submit" class="submit-btn">Book Now</button>
+								</div>
+
+						</div>
+
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+  {% endblock blockbody %}
