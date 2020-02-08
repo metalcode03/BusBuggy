@@ -25,11 +25,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 's7=8szs(p%_5@_oeko@_ej4rwa*p$n(i#4wq@r$w&((gw5l0z5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['167.172.244.180']
 
 AUTH_USER_MODEL = 'accounts.User'
+
 
 
 # Application definition

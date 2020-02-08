@@ -11,7 +11,8 @@ class Notifcation(models.Model):
     message = models.CharField(max_length=350)
     date = models.DateTimeField(auto_now_add=True)
     
-# @receiver(post_save, sender=Model)
+# @receiver
+# (post_save, sender=Model)
 # def _post_save_receiver(sender, **kwargs):
     
 
