@@ -60,7 +60,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'BusBuggy.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
