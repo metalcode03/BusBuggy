@@ -47,7 +47,7 @@ class UserManager(BaseUserManager):
         user.active = True
         user.bus_driver = True
 
-        user.save(using=self._db)
+        user.save()
 
         return user
 
