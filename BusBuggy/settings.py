@@ -92,7 +92,7 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'buggyDB',
+            'NAME': 'buggydb',
             'USER': 'metalcode',
             'PASSWORD': 'mummy,44',
             'HOST': 'localhost',
