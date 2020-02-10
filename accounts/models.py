@@ -142,7 +142,7 @@ class User(AbstractBaseUser):
         choices=SEXCHOICE,
         default=SEXCHOICE[2]
     )
-    password = models.CharField(_('password'), max_length=128)
+    password = models.CharField(_('password'), max_length=228)
 
     # FOR VERIFICATION AND PERMISSION
     active = models.BooleanField(default=True)
