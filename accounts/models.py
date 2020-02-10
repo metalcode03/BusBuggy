@@ -28,7 +28,7 @@ class UserManager(BaseUserManager):
         user.set_password(password)
         user.active = True
 
-        user.save(using=self._db)
+        user.save()
 
         return user
 
@@ -64,7 +64,7 @@ class UserManager(BaseUserManager):
         user.active = True
         user.bus_driver = True
 
-        user.save(using=self._db)
+        user.save()
 
         return user
 
@@ -81,7 +81,7 @@ class UserManager(BaseUserManager):
         user.active = True
         user.bus_driver = True
 
-        user.save(using=self._db)
+        user.save()
 
         return user
 
