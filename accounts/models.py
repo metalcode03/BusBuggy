@@ -4,7 +4,8 @@ from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from location_app.models import Location
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 # Create your models here.
 USERNAME_REGEX = '^[a-zA-Z0.+-]*$'
 
@@ -89,11 +90,7 @@ class UserManager(BaseUserManager):
 # USER MAIN CLASS MODELS
 class User(AbstractBaseUser):
     
-    SEXCHOICE = (
-        ('MA', _('Male')),
-        ('FA', _('Female')),
-        ('OT', _('Others'))
-    )
+
 
     # MAIN USER LOGIN AND SIGNUP
     username = models.CharField(
@@ -126,22 +123,7 @@ class User(AbstractBaseUser):
 
     )
 
-    # FOR MAIN PROFILE ACCESS
-    first_name = models.CharField(max_length=50)
-
-    last_name = models.CharField(max_length=50)
-
-    phone_number = models.IntegerField(default=+234)
-
-    image = models.ImageField(upload_to='profile_img/', default='avatar.jpg')
-
-    location = models.ForeignKey(
-        Location, on_delete=models.DO_NOTHING, blank=True, null=True)
-    sex = models.CharField(
-        max_length=2,
-        choices=SEXCHOICE,
-        default=SEXCHOICE[2]
-    )
+  
     password = models.CharField(_('password'), max_length=228)
 
     # FOR VERIFICATION AND PERMISSION
@@ -188,6 +170,44 @@ class User(AbstractBaseUser):
     @property
     def is_bus_driver(self):
         return self.bus_driver
+    
+
+    
+class Profile(models.Model):
+    SEXCHOICE = (
+        ('MA', _('Male')),
+        ('FA', _('Female')),
+        ('OT', _('Others'))
+    )    
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # FOR MAIN PROFILE ACCESS
+    first_name = models.CharField(max_length=50)
+
+    last_name = models.CharField(max_length=50)
+
+    phone_number = models.IntegerField(default=+234)
+
+    image = models.ImageField(upload_to='profile_img/', default='avatar.jpg')
+
+    location = models.ForeignKey(
+        Location, on_delete=models.DO_NOTHING, blank=True, null=True)
+    sex = models.CharField(
+        max_length=253,
+        choices=SEXCHOICE,
+        default=SEXCHOICE[2]
+    )
+
+
+@receiver(post_save, sender=User)
+def create_user_profile(instance, created, sender, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+
+@receiver(post_save, sender=User)
+def post_save_profile(sender, instance, **kwargs):
+    instance.profile.save()
 
 
 class BusRegister(models.Model):

@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 
 
-from .models import User, BusRegister
+from .models import User, BusRegister, Profile
 
 
 class UserRegistrationForm(forms.ModelForm):
@@ -82,7 +82,7 @@ class UserLoginForm(forms.Form):
 class ProfileForm(forms.ModelForm):
 
     class Meta:
-        model = User
+        model = Profile
         fields = [
             'first_name',
             'last_name',

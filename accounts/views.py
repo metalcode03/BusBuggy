@@ -12,7 +12,7 @@ from django.template.loader import get_template
 # from accounts.models import User
 from .forms import (BusRegisterForm, ProfileForm, UserLoginForm,
                     UserRegistrationForm)
-from .models import BusRegister, User
+from .models import BusRegister, User, Profile
 
 
 def register_view(request, *args, **kwargs):
@@ -93,7 +93,7 @@ def update_profile(request, username):
 @login_required
 def profile_view(request, username):
     username = User.objects.get(username=username)
-    user_view = User.objects.filter(username=username)
+    user_view = Profile.objects.filter(username=username)
 
     context = {
         'username': user_view
