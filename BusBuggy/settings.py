@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'BusBuggy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'busdb',
+        'NAME': 'godgracedb',
         'USER': 'metalcode',
         'PASSWORD': 'mummy,44',
         'HOST': 'localhost',
