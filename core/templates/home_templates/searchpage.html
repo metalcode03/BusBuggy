@@ -2,36 +2,38 @@
 {% load static %}
 {% block blockbody %}
 
-  <!-- START nav -->
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-      <div class="container">
-        <a class="navbar-brand" href="/home">BusBuggy</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav"
-          aria-expanded="false" aria-label="Toggle navigation">
-          <span class="oi oi-menu"></span>
-        </button>
+<!-- START nav -->
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+  <div class="container">
+    <img src="{% static 'images/logo-1.png' %}" style="width: 60px;" alt="">
+    <a class="navbar-brand" href="/home">BusBuggy</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="oi oi-menu"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="ftco-nav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active"><a href="/home" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
-            <li class="nav-item"><a href="/events/information" class="nav-link">Events</a></li>
-            {% if user.is_authenticated %}
-            <li class="nav-item"><a href="/profile/{{user}}" class="nav-link">Profile</a></li>
-            {% endif %}
-            <li class="nav-item"><a href="" class="nav-link"></a></li>
-          </ul>
-          {% if user.is_authenticated %}
-          <a href="">LOGOUT</a>
-          {% else %}
-          <span><a href="/accounts/login" class="btn btn-sm btn-primary">LOGIN</a></span>
-          {% endif %}
+    <div class="collapse navbar-collapse" id="ftco-nav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active"><a href="/home" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="/aboutus" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="/events/information" class="nav-link">Booked</a></li>
+        <li class="nav-item"><a href="{% url 'core:searchpath' %}" class="nav-link">Search</a></li>
+        {% if user.is_authenticated %}
+        <li class="nav-item"><a href="/profile/{{user}}" class="nav-link">Profile</a></li>
+        {% endif %}
+        <li class="nav-item"><a href="" class="nav-link"></a></li>
+      </ul>
+      {% if user.is_authenticated %}
+      <a href="/accounts/logout">LOGOUT</a>
+      {% else %}
+      <span><a href="/accounts/login" class="btn btn-lg rounded-pill btn-primary">LOGIN</a></span>
+      {% endif %}
 
-        </div>
+    </div>
 
-      </div>
-    </nav>
-    <!-- END nav -->
+  </div>
+</nav>
+<!-- END nav -->
     <div class="hero-wrap ftco-degree-bg" style="background:url({% static 'images/level2.jpg' %}) ;"  data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
