@@ -5,7 +5,7 @@ app_name = 'core'
 
 urlpatterns = [
     
-    path('home', views.index_views, name='home'),
+    path('', views.index_views, name='home'),
     
     path('events/information', views.event_views, name='info'),
     
