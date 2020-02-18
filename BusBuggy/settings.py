@@ -33,7 +33,7 @@ DEBUG = True
     
 # # else it will run with this server
 # else:
-ALLOWED_HOSTS = ['busbuggy.com','167.172.244.180']
+ALLOWED_HOSTS = ['busbuggy.com','167.172.244.180:8000']
 
 AUTH_USER_MODEL = 'accounts.User'
 
