@@ -27,7 +27,13 @@ SECRET_KEY = 's7=8szs(p%_5@_oeko@_ej4rwa*p$n(i#4wq@r$w&((gw5l0z5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['167.172.244.180']
+# if the debug is set to true, the app will run  localhost
+# if  DEBUG:
+#     ALLOWED_HOSTS = []
+    
+# # else it will run with this server
+# else:
+ALLOWED_HOSTS = ['busbuggy.com','167.172.244.180']
 
 AUTH_USER_MODEL = 'accounts.User'
 
@@ -81,7 +87,14 @@ WSGI_APPLICATION = 'BusBuggy.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
+# if DEBUG:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         }
+#     }
+# else:
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
