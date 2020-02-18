@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 's7=8szs(p%_5@_oeko@_ej4rwa*p$n(i#4wq@r$w&((gw5l0z5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # if the debug is set to true, the app will run  localhost
 # if  DEBUG:
